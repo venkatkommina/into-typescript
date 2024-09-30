@@ -75,4 +75,75 @@ let isAdultTrue = isAdult({ name: "John", age: 20 });
 console.log(isAdultTrue);
 greetUser({ name: "John", age: 20 });
 
-//implementing interfaces, popular interview question: what is the difference between interfaces and types?
+//implementing interfaces, popular interview question: what is the difference between interfaces and types?- 1:22:41 typescript intro
+//Other usecase:
+interface Person {
+  name: string;
+  age: number;
+  greet: (phrase: string) => void;
+}
+
+class Employee implements Person {
+  name: string;
+  age: number;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+  greet(phrase: string) {
+    console.log(`${phrase}, ${this.name}`);
+  }
+  //..any extra methods specific to Employee class
+}
+
+let user1 = new Employee("John", 20);
+user1.greet("Hi there");
+
+class Manager implements Person {
+  name: string;
+  age: number;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet(phrase: string) {
+    console.log(`${phrase}, Manager saab ${this.name}`);
+  }
+  //..any extra methods specific to Manager class
+}
+
+let user2 = new Manager("Kahn", 20);
+user2.greet("Hi there");
+
+//types: similar to interfaces but can't implement classes from types but they do few extra things like Union, Intersection..
+//We mostly use interfaces and use types for some specific cases.
+type stringOrNumber = string | number;
+
+function greet2(name: stringOrNumber) {
+  console.log(`Hi ${name}`);
+}
+
+greet2("Kane");
+greet2(777); //no errror here!
+
+interface faculty {
+  name: string;
+  department: string;
+}
+
+type staff = {
+  name: string;
+  position: string;
+};
+
+type staffAndFaculty = staff & faculty;
+
+let personA: staffAndFaculty = {
+  name: "John",
+  department: "IT",
+  position: "Manager",
+};
+
+console.log(personA);
