@@ -147,3 +147,33 @@ let personA: staffAndFaculty = {
 };
 
 console.log(personA);
+
+//Arrays
+function maxi(arr: number[]): number {
+  return Math.max(...arr);
+}
+
+let arr: number[] = [1, 2, 3, 4, 5];
+maxi(arr);
+
+interface User2 {
+  firstName: string;
+  lastName: string;
+  age: number;
+}
+
+function filterOut(users: User2[], age: number): User2[] {
+  return users.filter((user) => user.age > age);
+}
+
+let users: User2[] = [
+  { firstName: "John", lastName: "Doe", age: 10 },
+  { firstName: "Jane", lastName: "Doe", age: 21 },
+  { firstName: "John", lastName: "Smith", age: 22 },
+  { firstName: "Jane", lastName: "Smith", age: 23 },
+  { firstName: "John", lastName: "Darwin", age: 14 },
+  { firstName: "Jane", lastName: "Darwin", age: 15 },
+];
+
+let filteredUsers = filterOut(users, 18);
+console.log(filteredUsers);
